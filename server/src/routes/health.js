@@ -1,21 +1,25 @@
 import express from 'express';
-import { getDatabaseStatus } from '../config/database.js';
+import { getFirestore } from '../config/firebase.js';
 
 const router = express.Router();
 
-router.get('/', (req, res) => {
-  const dbStatus = getDatabaseStatus();
-  const isHealthy = dbStatus === 'connected';
+router.get('/', async (req, res) => {
+  let firestoreStatus = 'disconnected';
 
-  const healthInfo = {
+  try {
+    // Ping simple a Firestore
+    await getFirestore().listCollections();
+    firestoreStatus = 'connected';
+  } catch {
+    firestoreStatus = 'error';
+  }
+
+  res.json({
     success: true,
-    status: isHealthy ? 'healthy' : 'unhealthy',
+    status: 'ok',
     timestamp: new Date().toISOString(),
-    uptime: process.uptime(),
-    database: dbStatus
-  };
-  const statusCode = isHealthy ? 200 : 503;
-  res.status(statusCode).json(healthInfo);
+    firestore: firestoreStatus,
+  });
 });
 
 export default router;
