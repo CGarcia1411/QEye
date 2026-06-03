@@ -2,6 +2,7 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { Item } from '../types/evaluation';
 import { useTheme } from '../styles/theme';
 import { createItemCardStyles } from '../styles/styles';
+import { calculateItemScores } from '../utils/evaluationCalculations';
 
 interface ItemCardProps {
   item: Item;
@@ -12,17 +13,15 @@ export default function ItemCard({ item, onPress }: ItemCardProps) {
   const theme = useTheme();
   const styles = createItemCardStyles(theme);
 
-  const calculateItemScore = () => {
-    let totalWeight = 0;
-    let weightedScore = 0;
-    item.criteria.forEach(criterion => {
-      totalWeight += criterion.weight;
-      weightedScore += criterion.score * (criterion.weight / 100);
-    });
-    return totalWeight > 0 ? Math.round(weightedScore * 10) / 10 : 0;
+  const getQualityColor = (percentage: number) => {
+    if (percentage > 70) return theme.good;
+    if (percentage >= 50) return theme.acceptable;
+    return theme.deficient;
   };
 
+  const { actualScore, maxScore, percentage, qualityLabel } = calculateItemScores(item);
   const completedCriteria = item.criteria.filter(c => c.score > 0).length;
+  const qualityColor = getQualityColor(percentage);
 
   return (
     <TouchableOpacity
@@ -34,17 +33,34 @@ export default function ItemCard({ item, onPress }: ItemCardProps) {
       <View style={styles.header}>
         <Text style={styles.name}>{item.name}</Text>
         <View style={styles.weightBadge}>
-          <Text style={styles.weightText}> Valor del item: {item.weight}%</Text>
+          <Text style={styles.weightText}>Valor: {item.weight}%</Text>
         </View>
       </View>
 
-      <View style={styles.metaRow}>
+      <View style={[styles.metaRow, { marginBottom: 8 }]}>
         <Text style={styles.criteriaCount}>
           {completedCriteria}/{item.criteria.length} criterios evaluados
         </Text>
+      </View>
+
+      <View style={styles.metaRow}>
         <Text style={{ fontSize: 14, fontWeight: '600', color: theme.text.primary }}>
-          Puntuación: {calculateItemScore()}
+          Puntuación: {actualScore}/{maxScore}
         </Text>
+        <View style={{
+          backgroundColor: `${qualityColor}20`,
+          paddingHorizontal: 8,
+          paddingVertical: 4,
+          borderRadius: 8,
+        }}>
+          <Text style={{
+            fontSize: 12,
+            fontWeight: '700',
+            color: qualityColor,
+          }}>
+            {qualityLabel} ({percentage}%)
+          </Text>
+        </View>
       </View>
     </TouchableOpacity>
   );
