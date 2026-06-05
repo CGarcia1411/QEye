@@ -77,7 +77,7 @@ export default function EvaluationForms() {
         justifyContent: 'space-between',
         alignItems: 'center',
         paddingHorizontal: spacing.md,
-        paddingVertical: spacing.sm,
+        paddingVertical: spacing.md,
         borderBottomWidth: 1,
         borderBottomColor: theme.border,
         backgroundColor: theme.surface,
@@ -85,8 +85,8 @@ export default function EvaluationForms() {
         <TouchableOpacity onPress={() => router.back()} hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}>
           {<Ionicons name="arrow-back" size={24} color={theme.text.primary} /> }
         </TouchableOpacity>
-        <Text style={[typography.h3, { color: theme.text.primary }]}>
-          Evaluación
+        <Text style={[typography.h2, { color: theme.text.primary }]}>
+          Editar
         </Text>
         <TouchableOpacity onPress={handleSave} hitSlop={{ top: 20, bottom: 20, left: 20, right: 20 }}>
           <Text style={[typography.body, { color: theme.primary, fontWeight: '700' }]}>
