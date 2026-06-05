@@ -1,5 +1,6 @@
 export interface Evaluation {
-    id: number;
+    id: string;
+    userId: string;
     projectName: string;
     stages: Stage[];
     createdAt: Date;

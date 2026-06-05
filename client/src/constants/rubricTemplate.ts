@@ -1,7 +1,8 @@
 import { Evaluation } from '../types/evaluation'; 
 
 const rubricTemplate: Evaluation = {
-  id: 0,
+  id: "template",
+  userId: "template",
   projectName: '',
   createdAt: new Date(0),
   updatedAt: new Date(0),

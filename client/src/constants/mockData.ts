@@ -1,7 +1,8 @@
 import { Evaluation } from '../types/evaluation';
 
 export const MOCK_EVALUATION: Evaluation = {
-  id: 1,
+  id: "1",
+  userId: "1",
   projectName: 'QEye - Sistema de Evaluación de Calidad',
   createdAt: new Date(),
   updatedAt: new Date(),
