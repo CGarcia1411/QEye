@@ -1,9 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import FormsTest from './src/screens/FormsTest';
+import EvaluationForms from './src/screens/EvaluationForms';
 
 export default function App() {
-  return (<FormsTest/>
+  return (<EvaluationForms/>
   );
 }
 

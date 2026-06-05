@@ -1,5 +1,5 @@
-import FormsTest from '../src/screens/FormsTest';
+import EvaluationForms from '../src/screens/EvaluationForms';
 
 export default function HomeScreen() {
-  return <FormsTest />;
+  return <EvaluationForms />;
 }

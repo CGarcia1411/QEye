@@ -9,7 +9,7 @@ import rubricTemplate from '../constants/rubricTemplate';
 import { Evaluation } from '../types/evaluation';
 import { calculateTotalEvaluationScores } from '../utils/evaluationCalculations';
 
-export default function FormsTest() {
+export default function EvaluationForms() {
   const theme = useTheme();
   const globalStyles = createGlobalStyles(theme);
   const [evaluation, setEvaluation] = useState<Evaluation>(rubricTemplate);
