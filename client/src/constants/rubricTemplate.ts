@@ -3,7 +3,7 @@ import { Evaluation } from '../types/evaluation';
 const rubricTemplate: Evaluation = {
   id: "template",
   userId: "template",
-  projectName: '',
+  projectName: 'Template',
   createdAt: new Date(0),
   updatedAt: new Date(0),
   stages: [

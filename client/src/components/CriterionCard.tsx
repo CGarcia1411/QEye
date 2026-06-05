@@ -26,8 +26,8 @@ export default function CriterionCard({ criterion, onUpdateScore }: CriterionCar
         <View style={{ marginBottom: 12 }}>
           <Text style={{ fontSize: 13, fontWeight: '600', color: theme.text.secondary, marginBottom: 8 }}>Rúbrica:</Text>
           {criterion.rubric.map((rubricItem, index) => (
-            <Text key={rubricItem.weight} style={{ fontSize: 14, color: theme.text.secondary, marginBottom: 4 }}>
-              {rubricItem.weight} - {rubricItem.description}
+            <Text key={`${criterion.id}-${rubricItem.id}-${index}`} style={{ fontSize: 14, color: theme.text.secondary, marginBottom: 4 }}>
+              {rubricItem.description}
             </Text>
           ))}
         </View>
