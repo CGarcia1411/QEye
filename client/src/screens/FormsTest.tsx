@@ -5,14 +5,14 @@ import { createGlobalStyles } from '../styles/styles';
 import { spacing, typography } from '../styles/theme';
 import StageCard from '../components/StageCard';
 import ItemCard from '../components/ItemCard';
-import { MOCK_EVALUATION } from '../constants/mockData';
+import rubricTemplate from '../constants/rubricTemplate';
 import { Evaluation } from '../types/evaluation';
 import { calculateTotalEvaluationScores } from '../utils/evaluationCalculations';
 
 export default function FormsTest() {
   const theme = useTheme();
   const globalStyles = createGlobalStyles(theme);
-  const [evaluation, setEvaluation] = useState<Evaluation>(MOCK_EVALUATION);
+  const [evaluation, setEvaluation] = useState<Evaluation>(rubricTemplate);
   // Estado para controlar qué stage/item está expandido (null = ninguno)
   const [expandedStageId, setExpandedStageId] = useState<number | null>(null);
   const [expandedItemId, setExpandedItemId] = useState<number | null>(null);
