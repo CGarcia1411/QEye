@@ -9,15 +9,26 @@ import { spacing, typography } from '../styles/theme';
 import StageCard from '../components/StageCard';
 import ItemCard from '../components/ItemCard';
 import rubricTemplate from '../constants/rubricTemplate';
-import { Evaluation } from '../types/evaluation';
+import { Evaluation, SavedEvaluation } from '../types/evaluation';
 import { calculateTotalEvaluationScores } from '../utils/evaluationCalculations';
-import { saveEvaluation } from '../utils/evaluationParser';
+import { loadEvaluation,saveEvaluation } from '../utils/evaluationParser';
 
-export default function EvaluationForms() {
+interface EvaluationFormsProps {
+  evaluationMetadata: SavedEvaluation;
+}
+
+export default function EvaluationForms(
+  {evaluationMetadata} : EvaluationFormsProps
+) {
+  // Cargar theme y router
   const theme = useTheme();
   const router = useRouter();
   const globalStyles = createGlobalStyles(theme);
-  const [evaluation, setEvaluation] = useState<Evaluation>(rubricTemplate);
+
+  // Cargar evaluación
+  const loadedEvaluation = loadEvaluation(rubricTemplate, evaluationMetadata)
+  const [evaluation, setEvaluation] = useState<Evaluation>(loadedEvaluation);
+
   // Estado para controlar qué stage/item está expandido (null = ninguno)
   const [expandedStageId, setExpandedStageId] = useState<number | null>(null);
   const [expandedItemId, setExpandedItemId] = useState<number | null>(null);
