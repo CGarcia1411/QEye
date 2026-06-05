@@ -34,3 +34,17 @@ export interface RubricCriteria {
     weight: number;
     description: string; // % total del criterio
 }
+
+export interface SavedEvaluation {
+  id: string;
+  userId: string;
+  projectName: string;
+  createdAt: Date;
+  updatedAt: Date;
+  scores: EvaluationScore[];
+}
+
+export interface EvaluationScore {
+  criterionId: number;
+  score: number;
+}
