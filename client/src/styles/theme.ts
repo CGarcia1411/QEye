@@ -76,6 +76,7 @@ export const darkTheme: typeof lightTheme = {
   accent:            PALETTE.amber,
   accentSoft:        '#2A1F0A',
 
+  bad:               '#f81303',
   deficient:         '#FF8C3A',   // naranja más brillante sobre oscuro
   acceptable:        '#FFB740',
   good:              '#4ADE80',

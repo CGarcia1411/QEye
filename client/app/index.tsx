@@ -1,6 +1,5 @@
-import EvaluationForms from '../src/screens/EvaluationForms';
-import { savedEvaluation } from '../src/constants/preloadedSavedEvaluation'; // Preloaded data (remover más adelante)
+import LoginScreen from "../src/screens/LoginScreen";
 
 export default function HomeScreen() {
-  return <EvaluationForms evaluationMetadata={savedEvaluation} />;
+  return <LoginScreen/>;
 }

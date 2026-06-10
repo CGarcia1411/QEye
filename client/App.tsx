@@ -3,7 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import EvaluationForms from './src/screens/EvaluationForms';
 
 export default function App() {
-  return (<EvaluationForms/>
+  return (
+    <EvaluationForms/>
   );
 }
 
